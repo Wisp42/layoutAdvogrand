@@ -1,3 +1,5 @@
+/* base */
+
 *, *::after, *::before{
     box-sizing: border-box;
     padding: 0;
@@ -51,6 +53,53 @@ a:hover{
 .med-text{
     font-size: 24px;
 }
+
+/* menu */
+
+.menu-burger{
+    display: none;
+    position: relative;
+    height: 35px;
+    width: 35px;
+    background-image: linear-gradient(0deg, #c10a0a 0%, #e32525 100%);
+    border-radius: 5px;
+    text-align: center;
+}
+  .menu-burger span, .menu-burger span::before, .menu-burger span::after{
+    position: absolute;
+    display: block;
+    left: calc(50% - 10px);
+    top: calc(50% - 1px);
+    width: 20px;
+    height: 2px;
+    background-color: #fff;
+    transition: .2s;
+}
+  .menu-burger span::before, .menu-burger span::after{
+    content: '';
+}
+  .menu-burger span::before{
+    transform: translateY(7px);
+}
+  .menu-burger span::after{
+    transform: translateY(-7px);
+}
+  .menu-burger__active span::before{
+    transform: rotate(45deg);
+}
+  .menu-burger__active span::after{
+    transform: rotate(-45deg);
+}
+  .menu-burger__active span{
+    height: 0;
+}
+
+@media (max-width: 960px){
+    .menu-burger{
+        display: block;
+    }
+}
+
 /* header */
 
 .navbar{
@@ -92,7 +141,7 @@ a:hover{
     font-size: 14px;
 }
 .top-contacts{
-    display: inline-flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 270px;
@@ -108,6 +157,7 @@ a:hover{
 
 .header-banner{
     background-image: url(../images/banners/header-banner.jpg);
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -134,6 +184,29 @@ a:hover{
     padding: 25px 45px;
     font-size: 18px;
     line-height: 26px;
+}
+
+@media (max-width: 960px){
+    .menu{
+        display: none;
+    }
+    .navbar-wrap .button{
+        display: none;
+    }
+}
+@media (max-width: 768px){
+    .top-contacts{
+        justify-content: flex-end;
+    }
+    .top__description{
+        display: none;
+    }
+    .top-contacts .tel{
+        display: none;
+    }
+    .header-banner-text ,.header-banner-text .title{
+        text-align: center;
+    }
 }
 
 /* services */
@@ -164,12 +237,24 @@ a:hover{
     color: #e61010;
 }
 
+@media (max-width: 768px){
+    .services-content{
+        display: block;
+        text-align: center;
+    }
+    .services-item{
+        justify-content: center;
+        margin-bottom: 45px;
+    }
+}
+
 /* about */
 
 .about{
     background-image: url(../images/banners/about-banner.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     padding: 100px 0;
 }
 .about-wrap{
@@ -181,11 +266,13 @@ a:hover{
 }
 .about-numbers{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-top: 85px;
 }
 .about-numbers-item{
-    width: 155px;
+    max-width: 155px;
+    margin: 20px 10px 0 10px;
 }
 .about-numbers-item > p{
     margin-top: 25px;
@@ -193,6 +280,15 @@ a:hover{
 }
 .about-wrap>.subtitle>p{
     margin-bottom: 25px;
+}
+
+@media (max-width: 768px){
+    .about-wrap .subtitle{
+        margin-top: 30px;
+    }
+    .about-numbers{
+        margin-top: 20px;
+    }
 }
 
 /* work */
@@ -207,6 +303,7 @@ a:hover{
 .work-content{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .work-item{
     width: 265px;
@@ -220,6 +317,21 @@ a:hover{
     line-height: 22px;
 }
 
+@media (max-width: 960px){
+    .work-warp > .title{
+        margin-bottom: 35px;
+    }
+    .work-content{
+        display: block;
+    }
+    .work-item{
+        margin: 35px auto 0 auto;
+    }
+    .work-icon{
+        margin-bottom: 15px;
+    }
+}
+
 /* advantages */
 
 .advantages{
@@ -228,6 +340,7 @@ a:hover{
 .advantages-content{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: 80px;
 }
 .comparison-body{
@@ -241,7 +354,6 @@ a:hover{
 .comparison-body th, .comparison-body td{
     border: 0px solid inherit;
     padding: 20px 30px;
-    /* width: 210px; */
     text-align: center;
 }
 .comparison-body th:nth-child(3n-2), .comparison-body td:nth-child(3n-2){
@@ -263,13 +375,16 @@ a:hover{
     border: 1px solid #e8e8e8;
     border-top: 0px solid #e8e8e8;
 }
-
+.advantages-clients{
+    position: relative;
+    margin-left: 10px;
+}
 .advantages-clients-item{
     display: flex;
     align-items: center;
     font-size: 16px;
 }
-.advantages-clients-item .title{
+.advantages-clients .title{
     font-size: 16px;
     margin-bottom: 40px;
 }
@@ -279,10 +394,43 @@ a:hover{
 .advantages-clients-item p{
     line-height: 45px;
 }
-.advantages-clients .button{
-    padding: 27px 82px;
+.advantages-clients-button{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.advantages-clients-button .button{
+    width: 100%;
+    padding: 25px 0;
     font-size: 18px;
-    top: 10px;
+}
+
+@media (max-width: 960px){
+    .advantages-content{
+        display: block;
+    }
+    .advantages-comparison{
+        width: 100%;
+    }
+    .comparison-body{
+        margin: 0 auto;
+        max-width: 100%;
+    }
+    .advantages-clients{
+        position: static;
+        margin-top: 15px;
+    }
+    .advantages-clients-item{
+        justify-content: center;
+    }
+    .advantages-clients-button{
+        position: static;
+    }
+}
+@media (max-width: 576px){
+    .comparison-body th, .comparison-body td{
+        padding: 2px;
+    }
 }
 
 /* app */
@@ -290,16 +438,17 @@ a:hover{
 .app{
     background-image: url(../images/banners/app-banner.jpg);
     background-size: cover;
-    padding: 100px;
+    background-position: center;
+    padding: 100px 0;
 }
 .app-wrap{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     color: #fff;
 }
 .app-content{
-    margin-left: 10px;
     max-width: 540px;
 }
 .app-content .title{
@@ -329,7 +478,7 @@ a:hover{
 /* feedback */
 
 .feedback{
-    padding: 100px;
+    padding: 100px 0;
     background-color: #f5f5f5;
 }
 .feedback-content{
@@ -339,7 +488,8 @@ a:hover{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 650px;
+    flex-wrap: wrap;
+    max-width: 750px;
     margin: 0 auto;
 }
 .feedback-menu-item{
@@ -362,14 +512,16 @@ a:hover{
 }
 .feedback-slider{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-top: 80px;
     min-width: 0;
     overflow: hidden;
 }
 .feedback-slider-item{
     width: 300px;
-    margin: 0 5px;    
+    margin: 0 5px 15px 5px;    
+
 }
 .feedback-slider-item__thumbnail{
     position: relative;
@@ -415,6 +567,15 @@ a:hover{
     text-decoration: underline;
 }
 
+@media (max-width: 960px){
+    .feedback-menu{
+        /* max-width: 100%; */
+    }
+}
+@media (max-width: 768px){
+
+}
+
 /* partners */
 
 .partners{
@@ -422,7 +583,7 @@ a:hover{
 }
 .partners-slider{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin-top: 70px;
@@ -473,13 +634,16 @@ a:hover{
 .tariffs-menu{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 30px;
 }
 .tariffs-menu p{
     font-size: 16px;
+
 }
 .tariffs-nav{
     display: flex;
-    margin-bottom: 30px;
 }
 .tariffs-nav__item{
     margin-right: 20px;
@@ -591,10 +755,47 @@ a:hover{
     background-image: linear-gradient(0deg, #001b67 0%, #01378f 100%);
 }
 
+@media (max-width: 768px){
+    .tariffs{
+        padding: 50px 0;
+    }
+    .tariffs-wrap > .title, .tariffs-wrap > .subtitle{
+        text-align: center;
+    }
+    .tariffs-menu{
+        display: block;
+        text-align: center;
+    }
+    .tariffs-nav{
+        justify-content: center;
+        margin-top: 15px;
+    }
+    .tariffs-plans{
+        display: block;
+    }
+    .tariffs-plans-item{
+        width: 100%;
+    }
+    .tariffs-plans-description{
+        display: none;
+    }
+    .tariffs-plans__img{
+        margin-bottom: 0;
+        width: 100%;
+        height: auto;
+    }
+    .tariffs-plans__img img{
+        width: 100%;
+        object-fit: contain;
+    }
+    .tariffs-plans-price{
+        width: 100%;
+    }
+}
+
 /* contacts */
 
 .contacts{
-
     background-color: #f5f5f5;
 }
 .contacts-wrap{
@@ -696,6 +897,27 @@ textarea.contact-form-form{
     font-weight: 400;
 }
 
+@media (max-width: 960px){
+    .contact-content-wrap{
+        margin-left: 20px;
+    }
+}
+@media (max-width: 768px){
+    .contacts-wrap{
+        display: block;
+    }
+    .contact-form{
+        padding: 10px;
+    }
+    .contact-form-wrap{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .contact-content, .contact-content .title{
+        text-align: center;
+    }
+}
+
 /* footer */
 
 .footer{
@@ -706,6 +928,7 @@ textarea.contact-form-form{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 .developers{
     display: flex;
