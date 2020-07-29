@@ -913,6 +913,10 @@ textarea.contact-form-form{
         margin-left: 0;
         margin-right: 0;
     }
+    .contact-content-wrap{
+        margin-left: 0;
+        width: 100%;
+    }
     .contact-content, .contact-content .title{
         text-align: center;
     }
